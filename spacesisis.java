@@ -17,24 +17,47 @@ public class YourService extends KiboRpcService {
     @Override
     protected void runPlan1(){
         api.judgeSendStart();
-        moveToWrapper(10.6, -4.3, 5, 0, 0, -0.7071068, 0.7071068);
-        moveToWrapper(11, -4.3, 5, 0, 0, -0.7071068, 0.7071068);
-        moveToWrapper(11, -5.7, 5, 0, 0, -0.7071068, 0.7071068);
-        moveToWrapper(11.5, -5.7, 4.5, 0, 0, 0, 1); //p1-1
+
+        moveToWrapper(11.45, -5.7, 4.5, 0, 0, 0, 1); //p1-1
         Mat snapshot = api.getMatNavCam();
         String valueX = Convert(snapshot);
         api.judgeSendDiscoveredQR(0, valueX);
+        
         moveToWrapper(11, -6, 5.55, 0, -0.7071068, 0, 0.7071068); //p1-2
+        Mat snapshot = api.getMatNavCam();
+        String valueY = Convert(snapshot);
+        api.judgeSendDiscoveredQR(1, valueY);
+        
         moveToWrapper(11, -5.5, 4.33, 0, -0.7071068, 0, 0.7071068);//p1-3
-        moveToWrapper(11, -6.7, 4.33, 0, -0.7071068, 0, 0.7071068);
-        moveToWrapper(10.6, -6.7, 4.33, 0, -0.7071068, 0, 0.7071068);
-        moveToWrapper(10.6, -7.3, 4.33, 0, -0.7071068, 0, 0.7071068);
-
-        moveToWrapper(10.30, -7.5, 4.7, 0, 0, 1, 0);//p2-1
-        moveToWrapper(10.30, -8, 4.7, 0, 0, 1, 0);
-        moveToWrapper(11.5, -8, 5, 0, 0, 0, 1);//p2-2
+        Mat snapshot = api.getMatNavCam();
+        String valueZ = Convert(snapshot);
+        api.judgeSendDiscoveredQR(2, valueZ);
+        
+        moveToWrapper(10.55, -5.5, 4.9, 0, 0, 1, 0);
+        moveToWrapper(10.55, -6.8, 4.9, 0, 0, 1, 0);
+        moveToWrapper(11.2, -6.8, 4.9, 0, 0, 1, 0);
+        moveToWrapper(11.2, -7.5, 4.9, 0, 0, 1, 0);
+        moveToWrapper(10.45, -7.5, 4.7, 0, 0, 1, 0);//p2-1
+        Mat snapshot = api.getMatNavCam();
+        String valueqX = Convert(snapshot);
+        api.judgeSendDiscoveredQR(3, valueqX);
+        
         moveToWrapper(11, -7.7, 5.55, 0, -0.7071068, 0, 0.7071068);//p2-3
-
+        Mat snapshot = api.getMatNavCam();
+        String valueqZ = Convert(snapshot);
+        api.judgeSendDiscoveredQR(4, valueqZ);
+        
+        moveToWrapper(11.45, -8, 5, 0, 0, 0, 1);//p2-2
+        Mat snapshot = api.getMatNavCam();
+        String valueqY = Convert(snapshot);
+        api.judgeSendDiscoveredQR(5, valueqY);
+        
+        moveToWrapper(11.45, -8, 4.65, 0, 0, 0, 1);
+        moveToWrapper(11.1, -8, 4.65, 0, 0, 0, 1);
+        moveToWrapper(11.1, -9, 4.65, 0, 0, 0, 1);//near to target Point
+        
+        moveToWrapper(valueX, valueY, valueZ, valueqX,valueqY,valueqZ, 1);
+        
         api.laserControl(true);
         moveToWrapper(11.1, -6, 5.55, 0, -0.7071068, 0, 0.7071068);
 
