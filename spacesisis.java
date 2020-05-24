@@ -22,7 +22,7 @@ public class YourService extends KiboRpcService {
         Mat snapshot = api.getMatNavCam();
         String valueX = Convert(snapshot);
         api.judgeSendDiscoveredQR(0, valueX);
-        
+       
         moveToWrapper(11, -6, 5.55, 0, -0.7071068, 0, 0.7071068); //p1-2
         Mat snapshot = api.getMatNavCam();
         String valueY = Convert(snapshot);
