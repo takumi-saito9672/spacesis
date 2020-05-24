@@ -1,6 +1,7 @@
 package jp.jaxa.iss.kibo.rpc.sampleapk;
 
-import android.graphics.Bitmap;
+import org.opencv.core.Mat;
+import org.opencv.objdetect.QRCodeDetector;
 
 import jp.jaxa.iss.kibo.rpc.api.KiboRpcService;
 
@@ -16,13 +17,12 @@ public class YourService extends KiboRpcService {
     @Override
     protected void runPlan1(){
         api.judgeSendStart();
-
         moveToWrapper(10.6, -4.3, 5, 0, 0, -0.7071068, 0.7071068);
         moveToWrapper(11, -4.3, 5, 0, 0, -0.7071068, 0.7071068);
         moveToWrapper(11, -5.7, 5, 0, 0, -0.7071068, 0.7071068);
         moveToWrapper(11.5, -5.7, 4.5, 0, 0, 0, 1); //p1-1
-        Bitmap snapshot = api.getBitmapNavCam()
-        String valueX =
+        Mat snapshot = api.getMatNavCam();
+        String valueX = Convert(snapshot);
         api.judgeSendDiscoveredQR(0, valueX);
         moveToWrapper(11, -6, 5.55, 0, -0.7071068, 0, 0.7071068); //p1-2
         moveToWrapper(11, -5.5, 4.33, 0, -0.7071068, 0, 0.7071068);//p1-3
@@ -68,6 +68,13 @@ public class YourService extends KiboRpcService {
             result = api.moveTo(point, quaternion, true);
             ++loopCounter;
         }
+
+    }
+
+    private static String Convert(Mat imgs){
+        QRCodeDetector detectAndDecode = new QRCodeDetector();
+        String value = detectAndDecode.detectAndDecode(imgs);
+        return value;
     }
 
 }
