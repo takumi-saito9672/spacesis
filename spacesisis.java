@@ -61,13 +61,17 @@ public class YourService extends KiboRpcService {
         
         moveToWrapper(11.45, -8, 4.65, 0, 0, 0, 1);
         moveToWrapper(11.1, -8, 4.65, 0, 0, 0, 1);
-        moveToWrapper(11.1, -9, 4.65, 0, 0, 0, 1);//near to target Point
+        moveToWrapper(11.1, -9, 4.65, 0, 0, 0, 1);
         
-        moveToWrapper(valueXd, valueYd, valueZd, valueqXd,valueqYd,valueqZd, 1);
+        moveToWrapper(valueXd, valueYd, valueZd, valueqXd,valueqYd,valueqZd, 1); //P3
+        
+        double Xd = valueXd + 0.20*cos(pi/4) - 0.0944;
+        double Zd = valueZd - 0.20*cos(pi/4) - 0.0385;
+        moveToWrapper
+        
         
         api.laserControl(true);
-        moveToWrapper(11.1, -6, 5.55, 0, -0.7071068, 0, 0.7071068);
-
+        
         api.judgeSendFinishSimulation();
     }
 
