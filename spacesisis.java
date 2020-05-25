@@ -67,8 +67,7 @@ public class YourService extends KiboRpcService {
         
         double Xd = valueXd + 0.20*cos(pi/4) - 0.0944;
         double Zd = valueZd - 0.20*cos(pi/4) - 0.0385;
-        moveToWrapper
-        
+        moveToWrapper(Xd, valueYd, Zd, valueqXd,valueqYd,valueqZd, 1); //target point for laser
         
         api.laserControl(true);
         
